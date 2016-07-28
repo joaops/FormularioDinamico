@@ -17,47 +17,48 @@
 package br.com.joaops.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 /**
  *
  * @author João
  */
-public class Pessoa implements Serializable {
+@Entity
+@Table(name = "produto")
+public class Produto implements Serializable {
     
-    @NotNull
     private Long id;
     
     @NotNull
     @NotEmpty
-    private String nome;
+    @Size(min = 0, max = 255)
+    private String descricao;
     
     @NotNull
-    @DateTimeFormat(iso = ISO.DATE)
-    private LocalDate idade;
+    @Min(0)
+    private BigDecimal valor;
     
-    private List<Telefone> telefones;
-    
-    public Pessoa() {
-        nome = "";
-        //idade = LocalDate.of(1900, Month.JANUARY, 1);
-        telefones = new ArrayList<>();
+    public Produto() {
     }
     
-    public Pessoa(Long id, String nome, LocalDate idade, List<Telefone> telefones) {
-        this.id = id;
-        this.nome = nome;
-        this.idade = idade;
-        this.telefones = telefones;
+    public Produto(String descricao, BigDecimal valor) {
+        this.descricao = descricao;
+        this.valor = valor;
     }
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -66,37 +67,30 @@ public class Pessoa implements Serializable {
         this.id = id;
     }
     
-    public String getNome() {
-        return nome;
+    @Column(name = "descricao", length = 255, nullable = false)
+    public String getDescricao() {
+        return descricao;
     }
     
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     
-    public LocalDate getIdade() {
-        return idade;
+    @Column(name = "valor", precision = 10, scale = 2, nullable = false)
+    public BigDecimal getValor() {
+        return valor;
     }
     
-    public void setIdade(LocalDate idade) {
-        this.idade = idade;
-    }
-    
-    public List<Telefone> getTelefones() {
-        return telefones;
-    }
-    
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
     
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.nome);
-        hash = 67 * hash + Objects.hashCode(this.idade);
-        hash = 67 * hash + Objects.hashCode(this.telefones);
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.descricao);
+        hash = 37 * hash + Objects.hashCode(this.valor);
         return hash;
     }
     
@@ -111,17 +105,14 @@ public class Pessoa implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pessoa other = (Pessoa) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
+        final Produto other = (Produto) obj;
+        if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.idade, other.idade)) {
-            return false;
-        }
-        if (!Objects.equals(this.telefones, other.telefones)) {
+        if (!Objects.equals(this.valor, other.valor)) {
             return false;
         }
         return true;

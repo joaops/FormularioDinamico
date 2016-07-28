@@ -24,7 +24,6 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
         <netbeans.hint.license>gpl30</netbeans.hint.license>
         <spring.version>4.2.4.RELEASE</spring.version>
         <springframework-security.version>4.0.1.RELEASE</springframework-security.version>
@@ -36,7 +35,6 @@
         <thymeleaf-springsecurity4.version>3.0.0.RELEASE</thymeleaf-springsecurity4.version>
         <jackson.version>1.9.13</jackson.version>
         <postgres.version>9.1-901-1.jdbc4</postgres.version>
-        
     </properties>
     
     <dependencies>
@@ -105,14 +103,49 @@
         
         <dependency>
             <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1201-jdbc41</version>
         </dependency>
         
         <dependency>  
             <groupId>org.hibernate</groupId>  
             <artifactId>hibernate-validator</artifactId>  
             <version>${hibernate-validator.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jstl-impl</artifactId>
+            <version>1.2</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         
         <dependency>
@@ -186,7 +219,7 @@
         </dependency>
         
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -236,5 +269,4 @@
             </plugin>
         </plugins>
     </build>
-    
 </project>

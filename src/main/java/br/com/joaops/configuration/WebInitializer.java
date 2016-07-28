@@ -49,4 +49,5 @@ public class WebInitializer implements WebApplicationInitializer {
         FilterRegistration.Dynamic filter = servletContext.addFilter("characterEncodingFilter", characterEncodingFilter); 
         filter.addMappingForUrlPatterns(null, true, "/*"); 
     }
+    
 }

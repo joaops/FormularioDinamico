@@ -59,6 +59,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         registry.addResourceHandler("/resources/scripts/**").addResourceLocations("/WEB-INF/resources/scripts/");
         registry.addResourceHandler("/resources/styles/**").addResourceLocations("/WEB-INF/resources/styles/");
         registry.addResourceHandler("/resources/fonts/**").addResourceLocations("/WEB-INF/resources/fonts/");
+        registry.addResourceHandler("/resources/downloads/**").addResourceLocations("/WEB-INF/resources/downloads/");
     }
     
     @Bean

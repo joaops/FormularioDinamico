@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Adicionar</title>
+        <link rel="icon" href="resources/images/icon.gif" th:href="@{/resources/images/icon.gif}"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content="João Paulo Siqueira"/>
+        <link rel="stylesheet" href="resources/styles/bootstrap.min.css" th:href="@{/resources/styles/bootstrap.min.css}" />
+        <link rel="stylesheet" href="resources/styles/bootstrap-theme.min.css" th:href="@{/resources/styles/bootstrap-theme.min.css}" />
+        <link rel="stylesheet" href="resources/styles/starter-template.css" th:href="@{/resources/styles/starter-template.css}" />
+    </head>
+    
+    <body>
+        <nav th:replace="fragments/navbar :: navbar"> </nav>
+        
+        <div id="container">
+            <div class="container-fluid">
+                
+                <div class="row">
+                    <div class="col-md-1 col-md-offset-5">
+                        <a class="btn btn-default btn-sm" href="#" th:href="@{'/produto'}" th:text="'Voltar'"/>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <form class="form-horizontal" method="POST" th:object="${produto}" th:action="@{/produto/adicionar}">
+                            
+                            <div class="form-group">
+                                <label for="inputDescricao" class="col-sm-2 control-label" th:text="Descrição" />
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputDescricao" placeholder="Descrição" th:field="*{descricao}"/>
+                                    <label th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" th:text="'Erro na Descrição'" />
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="inputValor" class="col-sm-2 control-label" th:text="'Valor'" />
+                                <div class="col-sm-10">
+                                    <input type="number" step="any" class="form-control" id="inputValor" placeholder="Valor" th:field="*{valor}"/>
+                                    <label th:if="${#fields.hasErrors('valor')}" th:errors="*{valor}" th:text="'Erro no Valor'" />
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-sm-offset-5 col-sm-2">
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        Salvar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"/>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <footer th:replace="fragments/footer :: footer"> </footer>
+        </div>
+    </body>
+</html>

@@ -18,6 +18,8 @@ package br.com.joaops.repository;
 
 import br.com.joaops.model.Pessoa;
 import br.com.joaops.model.Telefone;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
@@ -32,14 +34,13 @@ public class Pessoas {
     private static final List<Pessoa> LISTA_PESSOAS = new ArrayList<>();
     
     static {
-        Pessoa p = new Pessoa("João", 21, new ArrayList<Telefone>());
+        Pessoa p = new Pessoa(1L, "João", LocalDate.of(1994, 8, 10), new ArrayList<Telefone>());
         p.getTelefones().add(new Telefone("88888888", "Celular"));
         p.getTelefones().add(new Telefone("88888889", "Celular2"));
         p.getTelefones().add(new Telefone("33333333", "Casa"));
         p.getTelefones().add(new Telefone("33333334", "Trabalho"));
         Pessoas.LISTA_PESSOAS.add(p);
-        
-        p = new Pessoa("Paulo", 22, new ArrayList<Telefone>());
+        p = new Pessoa(2L, "Paulo", LocalDate.of(1993, Month.AUGUST, 10), new ArrayList<Telefone>());
         p.getTelefones().add(new Telefone("88889999", "Celular"));
         p.getTelefones().add(new Telefone("33334444", "Casa"));
         Pessoas.LISTA_PESSOAS.add(p);

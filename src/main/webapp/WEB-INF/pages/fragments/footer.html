@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <title>Modelo</title>
+        <title>NavBar</title>
         <link rel="icon" href="resources/images/icon.gif" th:href="@{/resources/images/icon.gif}"/>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -15,18 +15,14 @@
     
     <body>
         
-        <nav th:replace="fragments/navbar :: navbar"> </nav>
-        
-        <div id="container" class="starter-template">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 col-md-offset-0">
-                        <h1>Modelo</h1>
-                    </div>
-                </div>
+        <footer class="footer" th:fragment="footer">
+            <div class="container">
+                <p class="text-muted">&copy; 2016 Joaops Company, Inc.</p>
             </div>
-            
-            <footer th:replace="fragments/footer :: footer"> </footer>
-        </div>
+            <script src="resources/scripts/jquery.min.js" th:src="@{/resources/scripts/jquery.min.js}"></script>
+            <script src="resources/scripts/npm.js" th:src="@{/resources/scripts/npm.js}"></script>
+            <script src="resources/scripts/bootstrap.min.js" th:src="@{/resources/scripts/bootstrap.min.js}"></script>
+            <script src="resources/scripts/navbar.js" th:src="@{/resources/scripts/navbar.js}"></script>
+        </footer>
     </body>
 </html>

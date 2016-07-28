@@ -14,41 +14,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package br.com.joaops.model;
+package br.com.joaops.repository;
+
+import br.com.joaops.model.Produto;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author João
  */
-public class Telefone {
+@Repository
+public class ProdutoRepository {
     
-    private String numero;
-    private String descricao;
+    @PersistenceContext
+    private EntityManager manager;
     
-    public Telefone() {
-        this.numero = "";
-        this.descricao = "";
+    public List<Produto> all() {
+        return manager.createQuery("from Produto", Produto.class).getResultList();
     }
     
-    public Telefone(String numero, String descricao) {
-        this.numero = numero;
-        this.descricao = descricao;
+    public void save(Produto produto) {
+        manager.persist(produto);
     }
     
-    public String getNumero() {
-        return numero;
+    public Produto findById(Long id) {
+        return manager.find(Produto.class, id);
     }
     
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void remove(Produto produto) {
+        manager.remove(produto);
     }
     
-    public String getDescricao() {
-        return descricao;
-    }
-    
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void update(Produto produto) {
+        manager.merge(produto);
     }
     
 }

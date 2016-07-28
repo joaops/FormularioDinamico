@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <title>Formulário</title>
+        <title>Produto</title>
         <link rel="icon" href="resources/images/icon.gif" th:href="@{/resources/images/icon.gif}"/>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -14,15 +14,24 @@
     </head>
     
     <body>
+        
         <nav th:replace="fragments/navbar :: navbar"> </nav>
         
-        <div id="container">
+        <div id="container" class="starter-template">
             <div class="container-fluid">
+                
                 <div class="row">
-                    <div class="col-md-1 col-md-offset-9">
-                        <a class="btn btn-default btn-sm" href="#" th:href="@{'/formulario/adicionar'}" th:text="'Adicionar'"/>
+                    <div class="col-md-1 col-md-offset-3">
+                        <h1>Produto</h1>
                     </div>
                 </div>
+                
+                <div class="row">
+                    <div class="col-md-1 col-md-offset-9">
+                        <a class="btn btn-default btn-sm" href="#" th:href="@{'/produto/adicionar'}" th:text="'Adicionar'"/>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="table-responsive">
@@ -30,22 +39,19 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Nome</th>
-                                        <th>Idade</th>
-                                        <th>Quantidade Nº de Telefones</th>
-                                        <th>Ação</th>
+                                        <th>Descrição</th>
+                                        <th>Valor</th>
+                                        <th>Operação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="pessoa : ${pessoas}">
-                                        <td th:text="${pessoa.id}"></td>
-                                        <td th:text="${pessoa.nome}"></td>
-                                        <td th:text="${pessoa.idade}"></td>
-                                        <td th:text="${pessoa.telefones.size()}"></td>
+                                    <tr th:each="produto : ${produtos}">
+                                        <td th:text="${produto.id}"></td>
+                                        <td th:text="${produto.descricao}"></td>
+                                        <td th:text="${produto.valor}"></td>
                                         <td>
-                                            <a class="btn btn-default btn-xs" href="#" th:href="@{'/formulario/listar/'+${pessoa.id}}" th:text="'Listar'"/>
-                                            <a class="btn btn-default btn-xs" href="#" th:href="@{'/formulario/editar/'+${pessoa.id}}" th:text="'Editar'"/>
-                                            <a class="btn btn-default btn-xs" href="#" th:href="@{'/formulario/excluir/'+${pessoa.id}}" th:text="'Excluir'"/>
+                                            <a class="btn btn-default btn-xs" href="#" th:href="@{'/produto/editar/'+${produto.id}}" th:text="'Editar'"/>
+                                            <a class="btn btn-default btn-xs" href="#" th:href="@{'/produto/excluir/'+${produto.id}}" th:text="'Excluir'"/>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -53,6 +59,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
             
             <footer th:replace="fragments/footer :: footer"> </footer>
