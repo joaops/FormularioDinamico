@@ -36,17 +36,9 @@ public class PersistenceConfig {
     public DataSource dataSource(Environment environment) {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        
-        if(System.getenv("OPENSHIFT_APP_NAME")!=null) {
-            dataSource.setUrl("jdbc:postgresql://"+System.getenv("OPENSHIFT_POSTGRESQL_DB_HOST")+":"+System.getenv("OPENSHIFT_POSTGRESQL_DB_PORT")+"/"+System.getenv("PGDATABASE"));
-            dataSource.setUsername(System.getenv("OPENSHIFT_POSTGRESQL_DB_USERNAME"));
-            dataSource.setPassword(System.getenv("OPENSHIFT_POSTGRESQL_DB_PASSWORD"));
-        } else {
-            dataSource.setUrl("jdbc:postgresql://localhost/sistema");
-            dataSource.setUsername("admin8x3r4ye");
-            dataSource.setPassword("jX5F7hbgGtMM");
-        }
-        
+        dataSource.setUrl("jdbc:postgresql://localhost/formulario_dinamico");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("postgres");
         return dataSource;
     }
     
